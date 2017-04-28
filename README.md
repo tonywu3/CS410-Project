@@ -5,4 +5,5 @@ Project for CS410
 Simply checkout this repository and run this directory in a server (I recommend `npm serve`)
 
 ## Credits
-https://github.com/fanzeyi/Pokemon-DB
+* https://github.com/fanzeyi/Pokemon-DB
+* https://github.com/filipekiss/pokemon-type-chart

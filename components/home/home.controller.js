@@ -1,8 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module("mainApp").controller("homeCtrl", ['$scope', '$timeout', '$q', '$log', '$http', '$filter', function ($scope, $timeout, $q, $log, $http, $filter) {
-        $scope.message = "Welcome";
+    angular.module("mainApp").controller("homeCtrl", ['$scope', '$timeout', '$q', '$log', '$http', '$filter', 'HomeService', function ($scope, $timeout, $q, $log, $http, $filter, HomeService) {
         var self = this;
 
         self.simulateQuery = false;
@@ -18,23 +17,16 @@
 
         self.newState = newState;
 
-        var pokemans = [];
-        var list_poke = [];
-        $http.get("assets/pokedex.json")
-            .success((data) => {
-                    angular.forEach(data, (object, val) => {
-                        //console.log(object);
-                        var newObj = {display: object.ename, value: object.ename.toLowerCase()};
-                        pokemans.push(newObj);
-                        self.states.push(newObj);
-                    })
-                    list_poke = data;
-            })
-            .error((data) => {
-                console.log("error");
-                console.log(data);
-            })
+        var pokemans = HomeService.getPokemans();
+        var list_poke = HomeService.getList();
+        self.states = pokemans;
 
+        $scope.pokeInfo = null;
+        /**
+         * This $http get request simply reads the pokedex json and parses it accordingly. 
+         */
+
+        
         function newState(state) {
             alert("Sorry! You'll need to create a Constitution for " + state + " first!");
         }
@@ -63,8 +55,26 @@
             //$log.info('Text changed to ' + text);
         }
 
+        /**
+         * Displays info upon clicking on the pokemon info.
+         * @param item the object containing the display and value of the autocomplete search. 
+         */
         function selectedItemChange(item) {
-            //$log.info('Item changed to ' + JSON.stringify(item));
+            if (item.display === undefined){
+                return;
+            }
+            $scope.pokeInfo = list_poke[item.display];
+            if ($scope.pokeInfo.ename === "Pikachu"){
+                console.log(HomeService.getTypeAdvantage("Electric", "Ground"));
+            }
+        }
+
+        /**
+         * 
+         * @param {*} poke the object of the pokemon, returns their types
+         */
+        function getPokeTypes(poke){
+            return list_poke[poke.display];
         }
 
         /**
