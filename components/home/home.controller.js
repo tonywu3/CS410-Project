@@ -73,12 +73,43 @@
                 //     console.log(HomeService.getTypeAdvantage("Electric", "Ground"));
                 // }
             });
+
+            /**
+             * this needs refactoring. currently only checks if one of the types is weak. 
+             */
             // if (selected_poke.type.length === 1) {
             //     angular.forEach(list_poke, (pokemon, val) => {
             //         if (pokemon.type.length === 1) {
             //             if (HomeService.getTypeAdvantage(pokemon.type[0], selected_poke.type[0])){
             //                 pokemonWeak.push(pokemon);
             //             }  
+            //         }
+            //         else {
+            //             var first = HomeService.getTypeAdvantage(pokemon.type[0], selected_poke.type[0]);
+            //             var second = HomeService.getTypeAdvantage(pokemon.type[1], selected_poke.type[0]);
+            //             if (first || second){
+            //                 pokemonWeak.push(pokemon);
+            //             }
+            //         }
+            //     })
+            // }
+            // else {
+            //     angular.forEach(list_poke, (pokemon, val) => {
+            //         if (pokemon.type.length === 1) {
+            //             var first = HomeService.getTypeAdvantage(pokemon.type[0], selected_poke.type[0]);
+            //             var second = HomeService.getTypeAdvantage(pokemon.type[0], selected_poke.type[1]);
+            //             if (first || second){
+            //                 pokemonWeak.push(pokemon);
+            //             }
+            //         }
+            //         else {
+            //             var first = HomeService.getTypeAdvantage(pokemon.type[0], selected_poke.type[0]);
+            //             var second = HomeService.getTypeAdvantage(pokemon.type[0], selected_poke.type[1]);
+            //             var third = HomeService.getTypeAdvantage(pokemon.type[1], selected_poke.type[0]);
+            //             var fourth = HomeService.getTypeAdvantage(pokemon.type[1], selected_poke.type[1])
+            //             if (first || second || third || fourth){
+            //                 pokemonWeak.push(pokemon);
+            //             }
             //         }
             //     })
             // }
