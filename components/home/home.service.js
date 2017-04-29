@@ -7,7 +7,7 @@
     angular.module("mainApp").service("HomeService", ['$http', function ($http) {
         this.types = {};
         this.pokemans = [];
-        this.list_poke = [];
+        this.list_poke = {};
 
         /**
          * $http call accesses the types json that is located in the assets folder and parses it into a dictionary

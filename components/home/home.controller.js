@@ -23,6 +23,7 @@
 
         $scope.pokeInfo = null;
         $scope.pokeApi = null;
+        $scope.pokemonWeak = [];
         /**
          * This $http get request simply reads the pokedex json and parses it accordingly. 
          */
@@ -65,12 +66,22 @@
                 return;
             }
             $scope.pokeInfo = list_poke[item.display];
-            HomeService.getPokeApi($scope.pokeInfo.id).then(function (result) {
+            var selected_poke = $scope.pokeInfo;
+            HomeService.getPokeApi(item.value).then(function (result) {
                 $scope.pokeApi = result;
-                if ($scope.pokeInfo.ename === "Pikachu") {
-                    console.log(HomeService.getTypeAdvantage("Electric", "Ground"));
-                }
+                // if ($scope.pokeInfo.ename === "Pikachu") {
+                //     console.log(HomeService.getTypeAdvantage("Electric", "Ground"));
+                // }
             });
+            // if (selected_poke.type.length === 1) {
+            //     angular.forEach(list_poke, (pokemon, val) => {
+            //         if (pokemon.type.length === 1) {
+            //             if (HomeService.getTypeAdvantage(pokemon.type[0], selected_poke.type[0])){
+            //                 pokemonWeak.push(pokemon);
+            //             }  
+            //         }
+            //     })
+            // }
         }
 
         /**
