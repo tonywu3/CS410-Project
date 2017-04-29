@@ -22,11 +22,12 @@
         self.states = pokemans;
 
         $scope.pokeInfo = null;
+        $scope.pokeApi = null;
         /**
          * This $http get request simply reads the pokedex json and parses it accordingly. 
          */
 
-        
+
         function newState(state) {
             alert("Sorry! You'll need to create a Constitution for " + state + " first!");
         }
@@ -60,20 +61,23 @@
          * @param item the object containing the display and value of the autocomplete search. 
          */
         function selectedItemChange(item) {
-            if (item.display === undefined){
+            if (item === undefined || item.display === undefined) {
                 return;
             }
             $scope.pokeInfo = list_poke[item.display];
-            if ($scope.pokeInfo.ename === "Pikachu"){
-                console.log(HomeService.getTypeAdvantage("Electric", "Ground"));
-            }
+            HomeService.getPokeApi($scope.pokeInfo.id).then(function (result) {
+                $scope.pokeApi = result;
+                if ($scope.pokeInfo.ename === "Pikachu") {
+                    console.log(HomeService.getTypeAdvantage("Electric", "Ground"));
+                }
+            });
         }
 
         /**
          * 
-         * @param {*} poke the object of the pokemon, returns their types
+         * @param {Object: object of the pokemon, returns their types} poke 
          */
-        function getPokeTypes(poke){
+        function getPokeTypes(poke) {
             return list_poke[poke.display];
         }
 
