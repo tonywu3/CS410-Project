@@ -68,7 +68,8 @@
             }
             $scope.pokeInfo = list_poke[item.display];
             var selected_poke = $scope.pokeInfo;
-            HomeService.getPokeApi(item.value).then(function (result) {
+            var str = item.value.replace(/[^\x00-\x7F]/g, "");
+            HomeService.getPokeApi(str).then(function (result) {
                 $scope.pokeApi = result;
                 // if ($scope.pokeInfo.ename === "Pikachu") {
                 //     console.log(HomeService.getTypeAdvantage("Electric", "Ground"));
@@ -123,7 +124,8 @@
          */
         $scope.getPokeInfo = (name, ev) => {
             console.log("clicked");
-            HomeService.getPokeApi(name.toLowerCase()).then((result) => {
+            var str = name.replace(/[^\x00-\x7F]/g, "");
+            HomeService.getPokeApi(str.toLowerCase()).then((result) => {
                 console.log(result);
                 dialogPoke = result;
                 $mdDialog.show({
