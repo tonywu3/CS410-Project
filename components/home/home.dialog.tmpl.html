@@ -1,0 +1,39 @@
+<md-dialog aria-label="{{name}}" style="width: 900px">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{name}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px;max-height:810px; ">
+            <div layout="column" layout-align="center center">
+                <img ng-src="{{pokeResult.sprites.front_default}}">
+                <p> Name: {{name}} </p>
+                <div layout="row" layout-padding layout-wrap layout-align="center center">
+                    Type(s): 
+                    <div layout="column" ng-repeat="type in pokeResult.types" layout-wrap>
+                        {{type.type.name }} <br>
+                    </div>
+                </div>
+                <div layout="row" layout-padding layout-wrap layout-align="center center"> 
+                    Moves: <br>
+                    <span flex></span>
+                    <div layout="column" ng-repeat="moves in pokeResult.moves" layout-wrap>
+                        {{moves.move.name }} <br>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="hide()" style="margin-right:20px;">
+                OK
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

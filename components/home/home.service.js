@@ -27,13 +27,13 @@
                 console.log(data);
             })
 
-        $http.get("assets/pokedex.json")
+        $http.get("assets/pokemon.json")
             .success((data) => {
-                angular.forEach(data, (object, val) => {
+                angular.forEach(data.pokemon, (object, val) => {
                     //console.log(object);
-                    var newObj = { display: object.ename, value: object.ename.toLowerCase() };
+                    var newObj = { display: object.name, value: object.name.toLowerCase() };
                     this.pokemans.push(newObj);
-                    this.list_poke[object.ename] = object;
+                    this.list_poke[object.name] = object;
                 })
             })
             .error((data) => {
@@ -59,7 +59,6 @@
          * Might do some more upgrading to this later on but this will do for now.
          */
         this.getTypeAdvantage = (type1, type2) => {
-            console.log(this.types[type1])
             if (this.types[type1].strengths.indexOf(type2) !== -1) {
                 return true;
             }
@@ -69,7 +68,7 @@
         }
 
         /**
-         * Gets the pokemon given the id of the pokemon
+         * Gets the pokemon given the id/name of the pokemon
          */
         this.getPokeApi = (id) => {
             var url = "http://pokeapi.co/api/v2/pokemon/" + id + "/";
