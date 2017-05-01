@@ -1,3 +1,9 @@
 .pokemon-box {
     width: 1100px !important;
 }
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}
