@@ -63,6 +63,9 @@
          * @param item the object containing the display and value of the autocomplete search. 
          */
         function selectedItemChange(item) {
+            $scope.pokemonWeak = [];
+            $scope.pokeApi = null;
+            $scope.pokeInfo = null;
             if (item === undefined || item.display === undefined) {
                 return;
             }
