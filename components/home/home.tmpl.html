@@ -2,7 +2,7 @@
     <md-button class="md-icon-button">
         <md-icon>menu</md-icon>
     </md-button>
-    <h2> Insert Name Here </h2>
+    <h2> Pokemon Matchup Calculator </h2>
     <div layout="row" layout-align="end" flex>
         <md-autocomplete ng-disabled="vm.isDisabled" md-no-cache="vm.noCache" md-selected-item="vm.selectedItem" md-search-text-change="vm.searchTextChange(vm.searchText)"
             md-search-text="vm.searchText" md-selected-item-change="vm.selectedItemChange(item)" md-items="item in vm.querySearch(vm.searchText) | orderBy: 'display'"
@@ -21,11 +21,11 @@
 <div layout="column" layout-align="center center">
     <img ng-src="{{pokeApi.sprites.front_default}}">
     <p> Name: {{pokeInfo.name}} </p>
-    <p> Type(s): {{pokeInfo.type}} </p>
+    <p> Type(s): <div ng-repeat="types in pokeInfo.type">{{types}}</div></p>
     <p> Pokemon Suggestions: </p>
 </div>
 <div layout="row" layout-padding layout-wrap>
     <div layout="column" flex="33" ng-repeat="poke in pokemonWeak" layout-align="center center">
-        <a ng-click="getPokeInfo(poke.name, $event)">{{poke.name}}</a>
+        <md-button class="md-raised md-primary" ng-click="getPokeInfo(poke.name, $event)">{{poke.name}}</md-button>
     </div>
 </div>
